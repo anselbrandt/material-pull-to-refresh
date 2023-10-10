@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "scrollyfills";
+import { Box, Stack, Typography } from "@mui/material";
 import "./App.css";
 
 export default function App() {
@@ -48,27 +49,44 @@ export default function App() {
   });
 
   return (
-    <div className="container" ref={ptr_scrollport}>
-      <header id="refresh" ref={ptr}>
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-        <span>{message}</span>
-      </header>
-      <main id="refresh-main" ref={main}>
-        <h1>Conversation</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-          laborum illo autem asperiores. Numquam voluptate facilis odit impedit
-          non autem magni architecto, placeat voluptatum dolorem nemo doloremque
-          velit, iure id.
-        </p>
-      </main>
-    </div>
+    <Stack alignItems="center" sx={{ overscrollBehavior: "none" }}>
+      <Box
+        className="container"
+        ref={ptr_scrollport}
+        sx={{
+          scrollSnapType: "y mandatory",
+          overscrollBehavior: "contain",
+          scrollBehavior: "smooth",
+        }}
+      >
+        <Box id="refresh" ref={ptr}>
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+          <Typography>{message}</Typography>
+        </Box>
+        <Box
+          id="refresh-main"
+          ref={main}
+          sx={{
+            scrollSnapAlign: "start",
+            scrollSnapStop: "always",
+            minBlockSize: "200vh",
+          }}
+        >
+          <Typography width={400}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+            laborum illo autem asperiores. Numquam voluptate facilis odit
+            impedit non autem magni architecto, placeat voluptatum dolorem nemo
+            doloremque velit, iure id.
+          </Typography>
+        </Box>
+      </Box>
+    </Stack>
   );
 }
