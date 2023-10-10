@@ -1,39 +1,25 @@
-# Material UI - Vite.js in TypeScript example
+# Pull To Refresh
 
-## How to use
+### Based on:
 
-Download the example [or clone the repo](https://github.com/mui/material-ui):
+[Pull to Refresh with Scroll Snap and Scroll Driven Animation](https://nerdy.dev/pull-to-refresh-prototype-with-scroll-snap-and-scroll-driven-animation)
 
-<!-- #default-branch-switch -->
+[Codepen](https://codepen.io/argyleink/pen/ExOWjMe)
+
+Using [scrollyfills](https://github.com/argyleink/scrollyfills) pollyfill for [scrollend](https://developer.chrome.com/blog/scrollend-a-new-javascript-event/)
+
+[](https://developer.chrome.com/blog/scrollend-a-new-javascript-event/)
+
+### Bootstrapped from [material-ui-vite-ts](https://github.com/mui/material-ui):
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/material-ui-vite-ts
 cd material-ui-vite-ts
 ```
 
-Install it and run:
+### Install and run:
 
 ```bash
-npm install
-npm run dev
+yarn
+yarn dev
 ```
-
-or:
-
-<!-- #default-branch-switch -->
-
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
-
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/material-ui-vite-ts)
-
-## The idea behind the example
-
-This example uses [Vite.js](https://github.com/vitejs/vite).
-It includes `@mui/material` and its peer dependencies, including [Emotion](https://emotion.sh/docs/introduction), the default style engine in Material UI v5.
-
-## What's next?
-
-<!-- #default-branch-switch -->
-
-You now have a working example project.
-You can head back to the documentation and continue by browsing the [templates](https://mui.com/material-ui/getting-started/templates/) section.
