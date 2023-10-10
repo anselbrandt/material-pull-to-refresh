@@ -56,7 +56,6 @@ export const Pull = () => {
           justifyContent="center"
           sx={{
             background: "gainsboro",
-            position: "relative",
           }}
         >
           <Typography>{message}</Typography>
