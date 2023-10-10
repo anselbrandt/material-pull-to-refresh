@@ -25,14 +25,7 @@ export const Pull = () => {
           setTimeout(() => {
             if (!contentRef.current) return;
             contentRef.current.scrollIntoView({ behavior: "smooth" });
-
-            window.addEventListener(
-              "scrollend",
-              () => {
-                setMessage("Pull to refresh");
-              },
-              { once: true }
-            );
+            setMessage("Pull to refresh");
           }, 500);
         }, 1000);
       }
@@ -51,20 +44,10 @@ export const Pull = () => {
             scrollBehavior: "smooth",
           }}
         >
-          <Stack
-            alignContent="center"
-            height={150}
-            alignItems="center"
-            justifyContent="center"
-          >
+          <Stack height={150} alignItems="center" justifyContent="center">
             <Typography>{message}</Typography>
           </Stack>
-          <Box
-            ref={contentRef}
-            sx={{
-              minBlockSize: "200vh",
-            }}
-          >
+          <Box ref={contentRef}>
             <Stack spacing={2}>
               <Messages />
             </Stack>
