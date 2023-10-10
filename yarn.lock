@@ -1071,6 +1071,11 @@ scrollyfills@^1.0.0:
   resolved "https://registry.yarnpkg.com/scrollyfills/-/scrollyfills-1.0.0.tgz#2990faeb80eea2071ee317b362dccd1d6d805f4c"
   integrity sha512-2Wwwgx5KoAqhmix+q3/HzcJfZm42k5XOcXcXu5L6vsEDxeCcorbSMshZtwQQxqGeowWf3/8RSGVswmwqOB+utw==
 
+seamless-scroll-polyfill@^2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/seamless-scroll-polyfill/-/seamless-scroll-polyfill-2.3.4.tgz#d2fd1833993a2ad41a3ac319c65dc839bf0746d5"
+  integrity sha512-Biobd4LDoeFODX1bfiru84GveSajzFELFB3ejMZsRR2TpD73W46uEZYAEqSx5RtKpN2umhGWaoSRivs0ZcHp9g==
+
 semver@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"

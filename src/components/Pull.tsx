@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "scrollyfills";
+import { scrollIntoView } from "seamless-scroll-polyfill";
 import { Box, Stack, Typography } from "@mui/material";
 import { Messages } from "./Messages";
 
@@ -11,7 +12,7 @@ export const Pull = () => {
 
   useEffect(() => {
     if (!contentRef.current) return;
-    contentRef.current.scrollIntoView();
+    scrollIntoView(contentRef.current, { block: "nearest" });
   }, []);
 
   useEffect(() => {
@@ -26,7 +27,10 @@ export const Pull = () => {
 
           setTimeout(() => {
             if (!contentRef.current) return;
-            contentRef.current.scrollIntoView({ behavior: "smooth" });
+            scrollIntoView(contentRef.current, {
+              behavior: "smooth",
+              block: "nearest",
+            });
             setStatus("Pull to refresh");
           }, 500);
         }, 1000);
