@@ -1,37 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import "scrollyfills";
 import { Box, Stack, Typography } from "@mui/material";
-import "./Pull.css";
 
 export const Pull = () => {
   const [message, setMessage] = useState("Pull to refresh");
-  // const ptr_scrollport = document.querySelector("html");
-  // const ptr = document.querySelector("#refresh");
-  // const main = document.querySelector("#refresh-main");
-  const ptr_scrollport = useRef<HTMLDivElement>(null);
-  const ptr = useRef<HTMLDivElement>(null);
-  const main = useRef<HTMLDivElement>(null);
+  const pullToRefreshRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!main.current) return;
-    main.current.scrollIntoView();
+    if (!contentRef.current) return;
+    contentRef.current.scrollIntoView();
   }, []);
 
   useEffect(() => {
     const handlePullToRefresh = () => {
-      if (!ptr.current || !ptr_scrollport.current) return;
-      if (ptr_scrollport.current.scrollTop <= 0) {
+      if (!pullToRefreshRef.current) return;
+      if (pullToRefreshRef.current.scrollTop <= 0) {
         setMessage("refreshing...");
-        ptr.current.setAttribute("loading-state", "loading");
 
         setTimeout(() => {
-          if (!ptr.current) return;
           setMessage("done!");
 
           setTimeout(() => {
-            if (!ptr.current || !main.current) return;
-            ptr.current.removeAttribute("loading-state");
-            main.current.scrollIntoView({ behavior: "smooth" });
+            if (!contentRef.current) return;
+            contentRef.current.scrollIntoView({ behavior: "smooth" });
 
             window.addEventListener(
               "scrollend",
@@ -51,30 +43,27 @@ export const Pull = () => {
     <Stack alignItems="center" sx={{ overscrollBehavior: "none" }}>
       <Box
         className="container"
-        ref={ptr_scrollport}
+        ref={pullToRefreshRef}
         sx={{
-          scrollSnapType: "y mandatory",
           overscrollBehavior: "contain",
           scrollBehavior: "smooth",
         }}
       >
-        <Box id="refresh" ref={ptr}>
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-          <Typography>{message}</Typography>
-        </Box>
-        <Box
-          id="refresh-main"
-          ref={main}
+        <Stack
+          alignContent="center"
+          height={150}
+          alignItems="center"
+          justifyContent="center"
           sx={{
-            scrollSnapAlign: "start",
-            scrollSnapStop: "always",
+            background: "gainsboro",
+            position: "relative",
+          }}
+        >
+          <Typography>{message}</Typography>
+        </Stack>
+        <Box
+          ref={contentRef}
+          sx={{
             minBlockSize: "200vh",
           }}
         >
