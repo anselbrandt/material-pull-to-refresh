@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "scrollyfills";
 import { Box, Stack, Typography } from "@mui/material";
+import { Messages } from "./Messages";
 
 export const Pull = () => {
   const [message, setMessage] = useState("Pull to refresh");
@@ -40,40 +41,36 @@ export const Pull = () => {
     window.addEventListener("scrollend", handlePullToRefresh);
   });
   return (
-    <Stack alignItems="center" sx={{ overscrollBehavior: "none" }}>
-      <Box
-        className="container"
-        ref={pullToRefreshRef}
-        sx={{
-          overscrollBehavior: "contain",
-          scrollBehavior: "smooth",
-        }}
-      >
-        <Stack
-          alignContent="center"
-          height={150}
-          alignItems="center"
-          justifyContent="center"
-          sx={{
-            background: "gainsboro",
-          }}
-        >
-          <Typography>{message}</Typography>
-        </Stack>
+    <Stack height={1} sx={{ overflowY: "scroll" }}>
+      <Stack sx={{ overscrollBehavior: "none" }}>
         <Box
-          ref={contentRef}
+          className="container"
+          ref={pullToRefreshRef}
           sx={{
-            minBlockSize: "200vh",
+            overscrollBehavior: "contain",
+            scrollBehavior: "smooth",
           }}
         >
-          <Typography width={400}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-            laborum illo autem asperiores. Numquam voluptate facilis odit
-            impedit non autem magni architecto, placeat voluptatum dolorem nemo
-            doloremque velit, iure id.
-          </Typography>
+          <Stack
+            alignContent="center"
+            height={150}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography>{message}</Typography>
+          </Stack>
+          <Box
+            ref={contentRef}
+            sx={{
+              minBlockSize: "200vh",
+            }}
+          >
+            <Stack spacing={2}>
+              <Messages />
+            </Stack>
+          </Box>
         </Box>
-      </Box>
+      </Stack>
     </Stack>
   );
 };
