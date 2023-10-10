@@ -7,6 +7,7 @@ export const Pull = () => {
   const [message, setMessage] = useState("Pull to refresh");
   const pullToRefreshRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!contentRef.current) return;
@@ -31,10 +32,19 @@ export const Pull = () => {
       }
     };
 
-    window.addEventListener("scrollend", handlePullToRefresh);
+    containerRef.current?.addEventListener("scrollend", handlePullToRefresh);
+    return () =>
+      containerRef.current?.removeEventListener(
+        "scrollend",
+        handlePullToRefresh
+      );
   });
   return (
-    <Stack height={1} sx={{ overflowY: "scroll" }}>
+    <Stack
+      height={1}
+      sx={{ overflowY: "scroll", overscrollBehavior: "contain" }}
+      ref={containerRef}
+    >
       <Stack sx={{ overscrollBehavior: "none" }}>
         <Box
           className="container"
