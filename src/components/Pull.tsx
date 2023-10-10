@@ -4,7 +4,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { Messages } from "./Messages";
 
 export const Pull = () => {
-  const [message, setMessage] = useState("Pull to refresh");
+  const [status, setStatus] = useState("Pull to refresh");
   const pullToRefreshRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,30 +15,29 @@ export const Pull = () => {
   }, []);
 
   useEffect(() => {
+    const container = containerRef.current;
     const handlePullToRefresh = () => {
       if (!pullToRefreshRef.current) return;
       if (pullToRefreshRef.current.scrollTop <= 0) {
-        setMessage("refreshing...");
+        setStatus("refreshing...");
 
         setTimeout(() => {
-          setMessage("done!");
+          setStatus("done!");
 
           setTimeout(() => {
             if (!contentRef.current) return;
             contentRef.current.scrollIntoView({ behavior: "smooth" });
-            setMessage("Pull to refresh");
+            setStatus("Pull to refresh");
           }, 500);
         }, 1000);
       }
     };
 
-    containerRef.current?.addEventListener("scrollend", handlePullToRefresh);
+    container?.addEventListener("scrollend", handlePullToRefresh);
     return () =>
-      containerRef.current?.removeEventListener(
-        "scrollend",
-        handlePullToRefresh
-      );
+      container?.removeEventListener("scrollend", handlePullToRefresh);
   });
+
   return (
     <Stack
       height={1}
@@ -55,12 +54,12 @@ export const Pull = () => {
           }}
         >
           <Stack height={150} alignItems="center" justifyContent="center">
-            <Typography>{message}</Typography>
+            <Typography>{status}</Typography>
           </Stack>
           <Box ref={contentRef}>
-            <Stack spacing={2}>
+            <Box ref={contentRef}>
               <Messages />
-            </Stack>
+            </Box>
           </Box>
         </Box>
       </Stack>
